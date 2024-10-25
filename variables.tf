@@ -40,10 +40,16 @@ variable "customer_gateway2" {
     default     = "AWSVGW2"
 }
 
-variable "customerIP" {
-    description = "Public IP Address of the Customer VPN Gateway"
+variable "customerIP1" {
+    description = "Public IP Address of the Customer VPN Gateway 1"
     type = string
     default = "34.218.161.66"
+}
+
+variable "customerIP2" {
+    description = "Public IP Address of the Customer VPN Gateway 2"
+    type = string
+    default = "50.112.210.68"
 }
 
 variable "customerCIDR" {

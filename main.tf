@@ -2,7 +2,7 @@ resource "azurerm_local_network_gateway" "AWS1" {
     name                = "${var.customer_gateway1}_${var.environment}"
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
-    gateway_address     = var.customerIP
+    gateway_address     = var.customerIP1
     address_space       = [var.customerCIDR]
 
     bgp_settings {
@@ -15,7 +15,7 @@ resource "azurerm_local_network_gateway" "AWS2" {
     name                = "${var.customer_gateway2}_${var.environment}"
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
-    gateway_address     = var.customerIP
+    gateway_address     = var.customerIP2
     address_space       = [var.customerCIDR]
 
     bgp_settings {
