@@ -43,13 +43,13 @@ variable "customer_gateway2" {
 variable "customerIP1" {
     description = "Public IP Address of the Customer VPN Gateway 1"
     type = string
-    default = "35.83.19.227"
+    default = "44.233.67.250"
 }
 
 variable "customerIP2" {
     description = "Public IP Address of the Customer VPN Gateway 2"
     type = string
-    default = "52.34.146.226"
+    default = "52.41.171.203"
 }
 
 variable "customerCIDR" {
@@ -58,16 +58,10 @@ variable "customerCIDR" {
     default     = "192.168.0.0/16"
 }
 
-variable "GatewayIPName1" {
+variable "GatewayIPName" {
     description = "Name of the dedicated public IP resource attachded to the Vnet gateway 1"
     type        = string
-    default     = "VnetGatewayIP1"
-}
-
-variable "GatewayIPName2" {
-    description = "Name of the dedicated public IP resource attachded to the Vnet gateway 2"
-    type        = string
-    default     = "VnetGatewayIP2"
+    default     = "VnetGatewayIP"
 }
 
 variable "vnetgatewayname" {
@@ -106,14 +100,8 @@ variable "shared_key" {
     sensitive   = true
 }
 
-variable "gatewayname1" {
+variable "gatewayname" {
     description = "Name of the 1st ip config"
     type        = string
-    default     = "gateway_ip1"
-}
-
-variable "gatewayname2" {
-    description = "Name of the 2nd ip config"
-    type        = string
-    default     = "gateway_ip2"
+    default     = "gateway_ip"
 }
