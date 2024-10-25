@@ -18,7 +18,7 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
 
-    type     = "VPN"
+    type     = "Vpn"
     vpn_type = var.vpntype
 
     active_active = false
