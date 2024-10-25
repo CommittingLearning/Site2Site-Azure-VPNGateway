@@ -7,7 +7,7 @@ resource "azurerm_local_network_gateway" "AWS1" {
 
     bgp_settings {
         asn = 65001
-        bgp_peering_address = "169.254.167.61"
+        bgp_peering_address = "169.254.21.2"
     }
 }
 
@@ -20,7 +20,7 @@ resource "azurerm_local_network_gateway" "AWS2" {
 
     bgp_settings {
         asn = 65001
-        bgp_peering_address = "169.254.78.237"
+        bgp_peering_address = "169.254.22.2"
     }
 }
 
