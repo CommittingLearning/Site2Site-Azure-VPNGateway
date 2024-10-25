@@ -24,7 +24,7 @@ resource "azurerm_local_network_gateway" "AWS2" {
     }
 }
 
-resource "azurerm_public_ip" "GatewayIP1" {
+resource "azurerm_public_ip" "GatewayIP" {
     name                = "${var.GatewayIPName}_${var.environment}"
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
