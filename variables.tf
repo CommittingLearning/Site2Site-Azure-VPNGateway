@@ -52,10 +52,16 @@ variable "customerCIDR" {
     default     = "192.168.0.0/16"
 }
 
-variable "GatewayIPName" {
-    description = "Name of the dedicated public IP resource attachded to the Vnet gateway"
+variable "GatewayIPName1" {
+    description = "Name of the dedicated public IP resource attachded to the Vnet gateway 1"
     type        = string
-    default     = "VnetGatewayIP"
+    default     = "VnetGatewayIP1"
+}
+
+variable "GatewayIPName2" {
+    description = "Name of the dedicated public IP resource attachded to the Vnet gateway 2"
+    type        = string
+    default     = "VnetGatewayIP2"
 }
 
 variable "vnetgatewayname" {

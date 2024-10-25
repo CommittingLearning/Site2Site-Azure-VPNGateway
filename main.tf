@@ -24,8 +24,15 @@ resource "azurerm_local_network_gateway" "AWS2" {
     }
 }
 
-resource "azurerm_public_ip" "GatewayIP" {
-    name                = "${var.GatewayIPName}_${var.environment}"
+resource "azurerm_public_ip" "GatewayIP1" {
+    name                = "${var.GatewayIPName1}_${var.environment}"
+    location            = var.location
+    resource_group_name = "${var.rg_name}_${var.environment}"
+    allocation_method   = "Static"
+}
+
+resource "azurerm_public_ip" "GatewayIP2" {
+    name                = "${var.GatewayIPName2}_${var.environment}"
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
     allocation_method   = "Static"
@@ -44,7 +51,13 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
     sku           = var.gatewaysku
 
     ip_configuration {
-        public_ip_address_id          = azurerm_public_ip.GatewayIP.id
+        public_ip_address_id          = azurerm_public_ip.GatewayIP1.id
+        private_ip_address_allocation = "Dynamic"
+        subnet_id                     = data.azurerm_subnet.gateway_subnet.id
+    }
+
+    ip_configuration {
+        public_ip_address_id          = azurerm_public_ip.GatewayIP2.id
         private_ip_address_allocation = "Dynamic"
         subnet_id                     = data.azurerm_subnet.gateway_subnet.id
     }
