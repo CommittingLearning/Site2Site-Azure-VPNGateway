@@ -10,7 +10,7 @@ resource "azurerm_public_ip" "GatewayIP" {
     name                = "${var.GatewayIPName}_${var.environment}"
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
-    allocation_method   = var.IPAllocation
+    allocation_method   = "Static"
 }
 
 resource "azurerm_virtual_network_gateway" "VnetGateway" {
@@ -27,7 +27,7 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
 
     ip_configuration {
         public_ip_address_id          = azurerm_public_ip.GatewayIP.id
-        private_ip_address_allocation = var.IPAllocation
+        private_ip_address_allocation = "Dynamic"
         subnet_id                     = data.azurerm_subnet.gateway_subnet.id
     }
 }

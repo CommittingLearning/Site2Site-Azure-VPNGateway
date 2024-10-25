@@ -52,12 +52,6 @@ variable "GatewayIPName" {
     default     = "VnetGatewayIP"
 }
 
-variable "IPAllocation" {
-    description = "Method of IP address allocation"
-    type        = string
-    default     = "Dynamic"
-}
-
 variable "vnetgatewayname" {
     description = "Name of the VNet gateway resource to provision"
     type        = string
