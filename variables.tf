@@ -85,7 +85,7 @@ variable "vpntype" {
 variable "gatewaysku" {
     description = "SKU of the VNet gateway being provisioned"
     type        = string
-    default     = "VpnGw1"
+    default     = "VpnGw2"
 }
 
 variable "ConnectionName1" {
