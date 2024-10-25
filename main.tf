@@ -51,14 +51,14 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
     sku           = var.gatewaysku
 
     ip_configuration {
-        name                          = "gateway_ip1"
+        name                          = var.gatewayname1
         public_ip_address_id          = azurerm_public_ip.GatewayIP1.id
         private_ip_address_allocation = "Dynamic"
         subnet_id                     = data.azurerm_subnet.gateway_subnet.id
     }
 
     ip_configuration {
-        name                          = "gateway_ip2"
+        name                          = var.gatewayname2
         public_ip_address_id          = azurerm_public_ip.GatewayIP2.id
         private_ip_address_allocation = "Dynamic"
         subnet_id                     = data.azurerm_subnet.gateway_subnet.id
@@ -67,7 +67,12 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
     bgp_settings {
         asn = 65002
         peering_addresses {
-            apipa_addresses = ["169.254.21.1", "169.254.22.1"]
+            ip_configuration_name = var.gatewayname1
+            apipa_addresses       = ["169.254.21.1"]
+        }
+        peering_addresses {
+            ip_configuration_name = var.gatewayname2
+            apipa_addresses       = ["169.254.22.1"]
         }
     }
 }

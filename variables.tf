@@ -105,3 +105,15 @@ variable "shared_key" {
     type        = string
     sensitive   = true
 }
+
+variable "gatewayname1" {
+    description = "Name of the 1st ip config"
+    type        = string
+    default     = "gateway_ip1"
+}
+
+variable "gatewayname2" {
+    description = "Name of the 2nd ip config"
+    type        = string
+    default     = "gateway_ip2"
+}
