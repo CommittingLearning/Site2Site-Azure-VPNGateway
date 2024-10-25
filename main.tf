@@ -4,6 +4,11 @@ resource "azurerm_local_network_gateway" "AWS" {
     resource_group_name = "${var.rg_name}_${var.environment}"
     gateway_address     = var.customerIP
     address_space       = [var.customerCIDR]
+
+    bgp_settings {
+        asn = 65001
+        bgp_peering_address = "169.254.167.61"
+    }
 }
 
 resource "azurerm_public_ip" "GatewayIP" {
