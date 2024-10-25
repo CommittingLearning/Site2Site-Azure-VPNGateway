@@ -28,10 +28,16 @@ variable "environment" {
     type        = string
 }
 
-variable "customer_gateway" {
-    description = "Name of the Customer gateway endpoint"
+variable "customer_gateway1" {
+    description = "Name of the first customer gateway endpoint"
     type        = string
-    default     = "AWSVGW"
+    default     = "AWSVGW1"
+}
+
+variable "customer_gateway2" {
+    description = "Name of the first customer gateway endpoint"
+    type        = string
+    default     = "AWSVGW2"
 }
 
 variable "customerIP" {
@@ -43,7 +49,7 @@ variable "customerIP" {
 variable "customerCIDR" {
     description = "Private CIDR range of the customer LAN"
     type        = string
-    default     = "192.168.1.0/24"
+    default     = "192.168.0.0/16"
 }
 
 variable "GatewayIPName" {
@@ -70,10 +76,16 @@ variable "gatewaysku" {
     default     = "VpnGw1"
 }
 
-variable "ConnectionName" {
+variable "ConnectionName1" {
     description = "Name of the VPN Connection between Azure and AWS"
     type        = string
-    default     = "S2S-AWS-Azure"
+    default     = "S2S-AWS-Azure1"
+}
+
+variable "ConnectionName2" {
+    description = "Name of the VPN Connection between Azure and AWS"
+    type        = string
+    default     = "S2S-AWS-Azure2"
 }
 
 variable "shared_key" {
