@@ -3,7 +3,6 @@ resource "azurerm_local_network_gateway" "AWS1" {
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
     gateway_address     = var.customerIP1
-    address_space       = [var.customerCIDR]
 
     bgp_settings {
         asn = 65001
@@ -16,7 +15,6 @@ resource "azurerm_local_network_gateway" "AWS2" {
     location            = var.location
     resource_group_name = "${var.rg_name}_${var.environment}"
     gateway_address     = var.customerIP2
-    address_space       = [var.customerCIDR]
 
     bgp_settings {
         asn = 65001
