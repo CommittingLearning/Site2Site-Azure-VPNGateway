@@ -1,3 +1,4 @@
+# Creating a local network gateway to connect with the first AWS S2S tunnel
 resource "azurerm_local_network_gateway" "AWS1" {
     name                = "${var.customer_gateway1}_${var.environment}"
     location            = var.location
@@ -10,6 +11,7 @@ resource "azurerm_local_network_gateway" "AWS1" {
     }
 }
 
+# Creating a local network gateway to connect with the second AWS S2S tunnel
 resource "azurerm_local_network_gateway" "AWS2" {
     name                = "${var.customer_gateway2}_${var.environment}"
     location            = var.location
@@ -22,6 +24,7 @@ resource "azurerm_local_network_gateway" "AWS2" {
     }
 }
 
+# Provisioning a dedicated public IP to attach to the VNet Gateway
 resource "azurerm_public_ip" "GatewayIP" {
     name                = "${var.GatewayIPName}_${var.environment}"
     location            = var.location
@@ -29,6 +32,7 @@ resource "azurerm_public_ip" "GatewayIP" {
     allocation_method   = "Static"
 }
 
+# Provisioning a VNet Gateway
 resource "azurerm_virtual_network_gateway" "VnetGateway" {
     name                = "${var.vnetgatewayname}_${var.environment}"
     location            = var.location
@@ -57,6 +61,7 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
     }
 }
 
+# Creating a VNet connection to sync the first local network gateway with the VNet Gateway
 resource "azurerm_virtual_network_gateway_connection" "Site2Site_Azure_AWS1" {
     name                           = "${var.ConnectionName1}_${var.environment}_Tunnel1"
     location                       = var.location
@@ -68,6 +73,7 @@ resource "azurerm_virtual_network_gateway_connection" "Site2Site_Azure_AWS1" {
     enable_bgp                     = true
 }
 
+# Creating a VNet connection to sync the second local network gateway with the VNet Gateway
 resource "azurerm_virtual_network_gateway_connection" "Site2Site_Azure_AWS2" {
     name                           = "${var.ConnectionName2}_${var.environment}_Tunnel2"
     location                       = var.location
