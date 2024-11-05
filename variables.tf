@@ -43,13 +43,13 @@ variable "customer_gateway2" {
 variable "customerIP1" {
     description = "Public IP Address of the Customer VPN Gateway 1"
     type = string
-    default = "52.35.38.60"
+    default = "35.155.150.94"
 }
 
 variable "customerIP2" {
     description = "Public IP Address of the Customer VPN Gateway 2"
     type = string
-    default = "54.244.127.107"
+    default = "52.89.226.176"
 }
 
 variable "customerCIDR" {
