@@ -105,3 +105,15 @@ variable "gatewayname" {
     type        = string
     default     = "gateway_ip"
 }
+
+variable "custombgp1" {
+    description = "APIPA Address used for S2S BGP connection with the first AWS tunnel"
+    type        = string
+    default     = "169.254.21.2"
+}
+
+variable "custombgp2" {
+    description = "APIPA Address used for S2S BGP connection with the second AWS tunnel"
+    type        = string
+    default     = "169.254.22.2"
+}

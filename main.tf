@@ -56,31 +56,41 @@ resource "azurerm_virtual_network_gateway" "VnetGateway" {
         asn = 65002
         peering_addresses {
             ip_configuration_name = var.gatewayname
-            apipa_addresses       = ["169.254.21.2", "169.254.22.2"]
+            apipa_addresses       = [var.custombgp1, var.custombgp2]
         }
     }
 }
 
 # Creating a VNet connection to sync the first local network gateway with the VNet Gateway
 resource "azurerm_virtual_network_gateway_connection" "Site2Site_Azure_AWS1" {
-    name                           = "${var.ConnectionName1}_${var.environment}_Tunnel1"
-    location                       = var.location
-    resource_group_name            = "${var.rg_name}_${var.environment}"
-    virtual_network_gateway_id     = azurerm_virtual_network_gateway.VnetGateway.id
-    local_network_gateway_id       = azurerm_local_network_gateway.AWS1.id
-    type                           = "IPsec"
-    shared_key                     = var.shared_key
-    enable_bgp                     = true
+    name                       = "${var.ConnectionName1}_${var.environment}_Tunnel1"
+    location                   = var.location
+    resource_group_name        = "${var.rg_name}_${var.environment}"
+    virtual_network_gateway_id = azurerm_virtual_network_gateway.VnetGateway.id
+    local_network_gateway_id   = azurerm_local_network_gateway.AWS1.id
+    type                       = "IPsec"
+    shared_key                 = var.shared_key
+    enable_bgp                 = true
+    dpd_timeout_seconds        = 45
+
+    custom_bgp_addresses {
+        primary = var.custombgp1
+    }
 }
 
 # Creating a VNet connection to sync the second local network gateway with the VNet Gateway
 resource "azurerm_virtual_network_gateway_connection" "Site2Site_Azure_AWS2" {
-    name                           = "${var.ConnectionName2}_${var.environment}_Tunnel2"
-    location                       = var.location
-    resource_group_name            = "${var.rg_name}_${var.environment}"
-    virtual_network_gateway_id     = azurerm_virtual_network_gateway.VnetGateway.id
-    local_network_gateway_id       = azurerm_local_network_gateway.AWS2.id
-    type                           = "IPsec"
-    shared_key                     = var.shared_key
-    enable_bgp                     = true
+    name                       = "${var.ConnectionName2}_${var.environment}_Tunnel2"
+    location                   = var.location
+    resource_group_name        = "${var.rg_name}_${var.environment}"
+    virtual_network_gateway_id = azurerm_virtual_network_gateway.VnetGateway.id
+    local_network_gateway_id   = azurerm_local_network_gateway.AWS2.id
+    type                       = "IPsec"
+    shared_key                 = var.shared_key
+    enable_bgp                 = true
+    dpd_timeout_seconds        = 45
+    
+    custom_bgp_addresses {
+        primary = var.custombgp2
+    }
 }
